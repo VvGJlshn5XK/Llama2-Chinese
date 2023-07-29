@@ -18,7 +18,21 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     libffi-dev \
     libgdbm-compat-dev \
-    pyhon \
+    && wget https://www.python.org/ftp/python/3.10.12/Python-3.10.12.tar.xz -O /tmp/Python-3.10.12.tar.xz \
+    && tar xvf /tmp/Python-3.10.12.tar.xz -C /tmp \
+    && cd /tmp/Python-3.10.12 \
+    && ./configure --enable-optimizations --with-ensurepip=install \
+    && make -j $(nproc) \
+    && make altinstall \
+    && update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1 \
+    && update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.10 1 \
+    && rm -rf /tmp/Python-3.10.12.tar.xz /tmp/Python-3.10.12 \
+    && apt-get install -y git \
+    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+    && apt-get install -y git-lfs \
+    && pip install --upgrade pip
+
+COPY . /root/Llama2-Chinese
 
 #设置工作目录
 WORKDIR /root/Llama2-Chinese
