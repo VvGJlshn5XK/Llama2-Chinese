@@ -18,15 +18,7 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     libffi-dev \
     libgdbm-compat-dev \
-    && wget https://www.python.org/ftp/python/3.10.12/Python-3.10.12.tar.xz -O /tmp/Python-3.10.12.tar.xz \
-    && tar xvf /tmp/Python-3.10.12.tar.xz -C /tmp \
-    && cd /tmp/Python-3.10.12 \
-    && ./configure --enable-optimizations --with-ensurepip=install \
-    && make -j $(nproc) \
-    && make altinstall \
-    && update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1 \
-    && update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.10 1 \
-    && rm -rf /tmp/Python-3.10.12.tar.xz /tmp/Python-3.10.12 \
+    pyhon \
     && apt-get install -y git \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -y git-lfs \
