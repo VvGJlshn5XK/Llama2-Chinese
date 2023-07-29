@@ -19,10 +19,6 @@ RUN apt-get update && apt-get install -y \
     libffi-dev \
     libgdbm-compat-dev \
     pyhon \
-    && apt-get install -y git \
-    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
-    && apt-get install -y git-lfs \
-    && pip install --upgrade pip
 
 #设置工作目录
 WORKDIR /root/Llama2-Chinese
